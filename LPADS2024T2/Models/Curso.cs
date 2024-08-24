@@ -2,7 +2,8 @@
 {
     public class Curso
     {
-        public int Id { get; set; }
+        public int Id { get; }
+        public string Nome { get; set; } = string.Empty;
         public string Descricao { get; set; } = string.Empty;
     }
 }

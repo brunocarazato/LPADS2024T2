@@ -1,0 +1,10 @@
+﻿@model List<Aluno>
+
+<h2>Lista de Alunos</h2>
+
+<ul>
+    @foreach(var aluno in Model)
+    {
+        <li>@Html.ActionLink(aluno.Nome, "Details", new {id = aluno.Id})</li>
+    }
+</ul>

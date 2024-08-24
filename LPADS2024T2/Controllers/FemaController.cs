@@ -7,18 +7,7 @@ namespace LPADS2024T2.Controllers
     {
         public IActionResult Index()
         {
-            Curso femaCurso1 = new Curso();
-            femaCurso1.Descricao = "ADS";
-            femaCurso1.Id = 2231;
-
-            Curso femaCurso2 = new Curso();
-            femaCurso2.Descricao = "BCC";
-            femaCurso2.Id = 5666;
-
-            ViewData["ADS"] = femaCurso1;
-            ViewData["BCC"] = femaCurso2;
-
-            return View(femaCurso1);
+            return View();
         }
         public IActionResult ADS()
         {
