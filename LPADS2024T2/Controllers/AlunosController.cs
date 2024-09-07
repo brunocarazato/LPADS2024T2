@@ -1,34 +1,29 @@
-﻿using LPADS2024T2.Models;
+﻿using LPADS2024T2.Data;
+using LPADS2024T2.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LPADS2024T2.Controllers
 {
     public class AlunosController : Controller
     {
- 
-        private static List<Aluno> alunos = new List<Aluno>
+
+        private readonly ConnectionContext _context;
+
+        public AlunosController(ConnectionContext context)
         {
-            new Aluno
-            {
-                Id = 1,
-                Nome = "João Silva",
-                Email = "joao@gmail.com"
-            },
-            new Aluno
-            {
-                Id = 2,
-                Nome = "Maria Oliveira",
-                Email = "maria@gmail.com"
-            },
-        };
-        public IActionResult Index()
-        {
-            return View(alunos);
+            _context = context;
         }
 
-        public IActionResult Details(int id)
+
+        public async Task<IActionResult> Index()
         {
-            var aluno = alunos.Find(aluno => aluno.Id == id);
+            return View(await _context.Alunos.ToListAsync());
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var aluno = await _context.Alunos.FirstOrDefaultAsync(aluno => aluno.Id == id);
             if(aluno == null)
             {
                 return NotFound();

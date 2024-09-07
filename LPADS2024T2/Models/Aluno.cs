@@ -1,5 +1,6 @@
 ﻿namespace LPADS2024T2.Models
 {
+    
     public class Aluno
     {
         public int Id { get; set; }
