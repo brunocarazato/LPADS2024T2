@@ -31,5 +31,24 @@ namespace LPADS2024T2.Controllers
             return View(aluno);
         }
 
+        //GET Alunos/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Nome,Email")] Aluno aluno)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(aluno);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(aluno);
+        }
+
     }
 }
