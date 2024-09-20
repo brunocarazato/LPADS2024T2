@@ -7,6 +7,10 @@
         <input asp-for="Nome" class="form-control"/>
         <label for="Email"></label>
         <input asp-for="Email" class="form-control" />
+        <label for="DataNascimento"></label>
+        <input asp-for="DataNascimento" class="form-control"/>
+        <label for="Curso"></label>
+        <select asp-for="Curso.Id" class="form-control" asp-items="ViewBag.CursoId"></select>
     </div>
     <br/>
     <button type="submit" class="btn btn-primary">Cadastrar</button>
