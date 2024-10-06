@@ -1,0 +1,55 @@
+﻿@model Evento
+
+<h2>Detalhes do Evento</h2>
+
+<p><strong>Nome:</strong> @Model.Nome</p>
+<p><strong>Data de Início:</strong> @Model.DataInicio</p>
+<p><strong>Descrição:</strong> @Model.Descricao</p>
+<a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.Id">Apagar</a>
+<hr />
+
+<h4>Alunos Inscritos</h4>
+
+@if (Model.AlunoEventos.Any())
+{
+    <table class="table">
+
+        <thead>
+		    <tr>
+			    <th>Nome</th>
+			    <th>Ações</th>
+		    </tr>
+	    </thead>
+	    <tbody>
+            @foreach (var inscricao in Model.AlunoEventos)
+            {
+                <tr>
+                    <td>@inscricao.Aluno.Nome</td>
+                    <td>
+                        <a href="@Url.Action("DeleteInscricao", new { EventoId = Model.Id, AlunoId = inscricao.Aluno.Id})">Apagar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nenhum aluno inscrito.</p>
+}
+<hr />
+<h4>Inscrever um Aluno</h4>
+<form asp-action="InscreverAluno" method="post">
+    <div class="form-group">
+        <label for="AlunoId">Selecionar Aluno</label>
+        <select name="AlunoId" class="form-control">
+            <option value="0">Selecione um aluno</option>
+            @foreach (var aluno in ViewBag.Alunos)
+            {
+                <option value="@aluno.Value">@aluno.Text</option>
+            }
+        </select>
+    </div>
+    <input type="hidden" name="eventoId" value="@Model.Id" />
+    <button type="submit" class="btn btn-success">Inscrever Aluno</button>
+</form>

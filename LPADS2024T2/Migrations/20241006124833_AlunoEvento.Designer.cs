@@ -4,6 +4,7 @@ using LPADS2024T2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LPADS2024T2.Migrations
 {
     [DbContext(typeof(ConnectionContext))]
-    partial class ConnectionContextModelSnapshot : ModelSnapshot
+    [Migration("20241006124833_AlunoEvento")]
+    partial class AlunoEvento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +51,7 @@ namespace LPADS2024T2.Migrations
 
                     b.HasIndex("CursoId");
 
-                    b.ToTable("Alunos", (string)null);
+                    b.ToTable("Alunos");
                 });
 
             modelBuilder.Entity("LPADS2024T2.Models.AlunoEvento", b =>
@@ -63,7 +66,7 @@ namespace LPADS2024T2.Migrations
 
                     b.HasIndex("EventoId");
 
-                    b.ToTable("AlunoEventos", (string)null);
+                    b.ToTable("AlunoEventos");
                 });
 
             modelBuilder.Entity("LPADS2024T2.Models.Curso", b =>
@@ -84,7 +87,7 @@ namespace LPADS2024T2.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cursos", (string)null);
+                    b.ToTable("Cursos");
                 });
 
             modelBuilder.Entity("LPADS2024T2.Models.Evento", b =>
@@ -113,7 +116,7 @@ namespace LPADS2024T2.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Eventos", (string)null);
+                    b.ToTable("Eventos");
                 });
 
             modelBuilder.Entity("LPADS2024T2.Models.Aluno", b =>

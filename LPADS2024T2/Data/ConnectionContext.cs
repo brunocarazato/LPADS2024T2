@@ -15,9 +15,10 @@ using Microsoft.EntityFrameworkCore;
      *   ALTER ROLE db_owner ADD MEMBER novoUsuario;
      */
     public DbSet<Aluno> Alunos { get; set; }
-        public DbSet<Curso> Cursos { get; set; }
-
-        public ConnectionContext(DbContextOptions<ConnectionContext> options) : 
+    public DbSet<Curso> Cursos { get; set; }
+    public DbSet<Evento> Eventos { get; set; }
+	public DbSet<AlunoEvento> AlunoEventos { get; set; }
+	public ConnectionContext(DbContextOptions<ConnectionContext> options) : 
         base(options) { }
 
 
