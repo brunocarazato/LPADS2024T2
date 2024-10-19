@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Evento>
+
+<h2>Lista de Eventos</h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Data de Início</th>
+			<th>Ações</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var evento in Model)
+		{
+			<tr>
+				<td>@evento.Nome</td>
+				<td>@evento.DataInicio</td>
+				<td>
+					<a href="@Url.Action("Details", new { id = evento.Id })">Detalhes</a> |
+					<a href="@Url.Action("Update", new { id = evento.Id })">Editar</a> |
+					<a href="@Url.Action("Delete", new { id = evento.Id })">Apagar</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

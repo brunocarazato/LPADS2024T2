@@ -4,6 +4,7 @@ using LPADS2024T2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LPADS2024T2.Migrations
 {
     [DbContext(typeof(ConnectionContext))]
-    partial class ConnectionContextModelSnapshot : ModelSnapshot
+    [Migration("20241018230743_ModelEvento")]
+    partial class ModelEvento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,21 +52,6 @@ namespace LPADS2024T2.Migrations
                     b.HasIndex("CursoId");
 
                     b.ToTable("Alunos");
-                });
-
-            modelBuilder.Entity("LPADS2024T2.Models.AlunoEvento", b =>
-                {
-                    b.Property<int>("AlunoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EventoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AlunoId", "EventoId");
-
-                    b.HasIndex("EventoId");
-
-                    b.ToTable("AlunoEventos");
                 });
 
             modelBuilder.Entity("LPADS2024T2.Models.Curso", b =>
@@ -123,25 +111,6 @@ namespace LPADS2024T2.Migrations
                         .HasForeignKey("CursoId");
 
                     b.Navigation("Curso");
-                });
-
-            modelBuilder.Entity("LPADS2024T2.Models.AlunoEvento", b =>
-                {
-                    b.HasOne("LPADS2024T2.Models.Aluno", "Aluno")
-                        .WithMany()
-                        .HasForeignKey("AlunoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LPADS2024T2.Models.Evento", "Evento")
-                        .WithMany()
-                        .HasForeignKey("EventoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Aluno");
-
-                    b.Navigation("Evento");
                 });
 #pragma warning restore 612, 618
         }
